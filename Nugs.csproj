@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>nugs</ToolCommandName>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Product>Nugs</Product>
+    <PackageVersion Condition="'$(PackageVersion)' == ''">0.2.0-preview1</PackageVersion>
+    <PackageProjectUrl>https://github.com/loic-sharma/nugs</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIconUrl>
+      https://raw.githubusercontent.com/NuGet/Media/master/Images/MainLogo/256x256/nuget_256.png</PackageIconUrl>
+
+    <PackageTags>NuGet</PackageTags>
+    <Description>A .NET tool to search and install NuGet packages.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BaGetter.Protocol" Version="1.6.0-docs1" />
+    <PackageReference Include="Microsoft.DotNet.Interactive" Version="1.0.0-beta.20154.7" />
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta1.20253.1" />
+    <PackageReference Include="Terminal.Gui" Version="0.81.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,57 @@
+version: '3'
+
+tasks:
+  default:
+    desc: Default task
+    cmds:
+      - task --list-all
+
+  run:
+    desc: Run the project
+    cmds:
+      - dotnet run
+
+  build:
+    desc: Build the project
+    cmds:
+      - dotnet build
+
+  pack: 
+    desc: Pack the project
+    cmds:
+      - dotnet pack
+
+  create-nuget-feed:
+    desc: Create a nuget feed
+    cmds:
+     - docker run --rm -d --name nuget-server -e Mirror__Enabled=true -e Mirror__PackageSource=https://api.nuget.org/v3/index.json -p 5000:8080 -v bagetter-data:/data bagetter/bagetter:latest
+  
+  publish-nuget-package:
+    desc: Publish the project
+    cmds:
+      - dotnet nuget push -s http://localhost:5000/v3/index.json ./bin/Release/*.nupkg --skip-duplicate
+
+  destroy-nuget-feed:
+    desc: Destroy the nuget feed
+    cmds:
+      - docker stop nuget-server
+  
+  add-nuget-source:
+    desc: Add a nuget source
+    cmds:
+     - dotnet nuget add source http://localhost:5000/v3/index.json --name Bagetter
+
+  remove-nuget-source:
+    desc: Remove a nuget source
+    cmds:
+     - dotnet nuget remove source Bagetter
+
+  pull-nuget-package:
+    desc: Pull a nuget package
+    cmds:
+     - dotnet add package Newtonsoft.Json
+
+  remove-nuget-package:
+    desc: Remove a nuget package
+    cmds:
+     - dotnet remove package Newtonsoft.Json
