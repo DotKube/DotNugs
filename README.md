@@ -46,6 +46,10 @@ To run the application:
 task run
 ```
 
+<p align="center"><img src="https://user-images.githubusercontent.com/737941/82861979-43bd7800-9ed3-11ea-8be0-cd457e551132.gif" width="655" /></p>
+
+
+
 ### Publish the NuGet Package to Bagetter
 
 Run the following tasks in order:
